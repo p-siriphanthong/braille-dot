@@ -10,6 +10,7 @@ const Character = styled.p.attrs({
   color: ${props => props.colors.click};
   font-size: 1.3em;
   text-align: center;
+  transition: all 0.2s linear;
 `
 
 const Box = styled.div.attrs({
@@ -27,6 +28,7 @@ const Box = styled.div.attrs({
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  transition: all 0.2s linear;
 `
 
 const Button = styled.div.attrs({
@@ -46,6 +48,7 @@ const Button = styled.div.attrs({
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.2s linear;
   cursor: pointer;
 
   &:hover {
