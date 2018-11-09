@@ -1,6 +1,6 @@
 export default {
+  primary: '#efac53',
   color: '#fff',
-  word: '#efac53',
   background: '#303030',
 
   defaultColor: {

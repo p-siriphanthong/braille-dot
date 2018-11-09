@@ -11,7 +11,8 @@ injectGlobal`
     color: ${theme.color};
     background: ${theme.background};
     font-family: 'Inconsolata', sans-serif;
-    padding: 10px;
+    margin: 0;
+    padding: 0;
   }
 `
 

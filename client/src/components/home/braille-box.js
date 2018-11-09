@@ -56,7 +56,17 @@ const Button = styled.div.attrs({
 class BrailleBox extends Component {
   constructor(props) {
     super(props)
-    this.state = { braille: '000000', correct: false }
+    this.state = {
+      braille: '000000',
+      correct: false
+    }
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      braille: '000000',
+      correct: false
+    })
   }
 
   toggleBraille = index => {
