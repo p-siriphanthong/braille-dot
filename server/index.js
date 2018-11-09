@@ -30,10 +30,10 @@ app.get('/api/braille/word/random', (req, res) => {
 
         // Random a word and convert to braille
         let word = randomWords({ exactly: 1, maxLength: 5 })[0]
-        let word_braille = []
+        let word_brailles = []
         word.split('').forEach(ch => {
           let braille = braille_list.find(obj => obj.val === ch)
-          word_braille.push(
+          word_brailles.push(
             braille.key
               .charCodeAt(0)
               .toString(2)
@@ -44,7 +44,7 @@ app.get('/api/braille/word/random', (req, res) => {
           )
         })
 
-        res.send({ word: word, braille: word_braille })
+        res.send({ word: word, brailles: word_brailles })
       }
     }
   )

@@ -4,19 +4,14 @@ import { BrowserRouter } from 'react-router-dom'
 import { injectGlobal } from 'styled-components'
 import * as serviceWorker from './serviceWorker'
 import App from './App'
+import theme from './theme'
 
 injectGlobal`
-  * {
-    outline: none;
-  }
   body {
-    font-family: 'Roboto', sans-serif;
-  }
-  a {
-    text-decoration: none;
-  }
-  li {
-    list-style: none;
+    color: ${theme.color};
+    background: ${theme.background};
+    font-family: 'Inconsolata', sans-serif;
+    padding: 10px;
   }
 `
 
