@@ -1,37 +1,28 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
-import axios from 'axios'
-import './App.css'
+import { Switch, Route } from 'react-router-dom'
+import styled, { ThemeProvider } from 'styled-components'
+import theme from './theme'
+
+// Pages
+import Home from './components/home'
+import NotFoundPage from './components/error/404'
+
+const Wrapper = styled.div`
+  max-width: 1920px;
+  margin: auto;
+`
 
 class App extends Component {
-  componentDidMount() {
-    axios
-      .get('/api/hello')
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <ThemeProvider theme={theme}>
+        <Wrapper>
+          <Switch>
+            <Route exact path={'/'} component={Home} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Wrapper>
+      </ThemeProvider>
     )
   }
 }
