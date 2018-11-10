@@ -7,12 +7,19 @@ import App from './App'
 import theme from './theme'
 
 injectGlobal`
+  *{
+    outline: none;
+  }
   body {
     color: ${theme.color};
     background: ${theme.background};
     font-family: 'Inconsolata', sans-serif;
     margin: 0;
     padding: 0;
+  }
+  a {
+    color: ${theme.color};
+    text-decoration: none;
   }
 `
 
