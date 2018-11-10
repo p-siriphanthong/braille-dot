@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Character = styled.p.attrs({
   colors: props =>
     props.correct
-      ? props.theme.correctColor[props.colorIndex]
+      ? props.theme.correctColor[props.index]
       : props.theme.defaultColor
 })`
   color: ${props => props.colors.click};
@@ -16,7 +16,7 @@ const Character = styled.p.attrs({
 const Box = styled.div.attrs({
   colors: props =>
     props.correct
-      ? props.theme.correctColor[props.colorIndex]
+      ? props.theme.correctColor[props.index]
       : props.theme.defaultColor
 })`
   border: 2px solid ${props => props.colors.default};
@@ -34,7 +34,7 @@ const Box = styled.div.attrs({
 const Button = styled.div.attrs({
   colors: props =>
     props.correct
-      ? props.theme.correctColor[props.colorIndex]
+      ? props.theme.correctColor[props.index]
       : props.theme.defaultColor
 })`
   ${props =>
@@ -60,16 +60,8 @@ class BrailleBox extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      braille: '000000',
-      correct: false
+      braille: '000000'
     }
-  }
-
-  componentWillReceiveProps() {
-    this.setState({
-      braille: '000000',
-      correct: false
-    })
   }
 
   toggleBraille = index => {
@@ -80,27 +72,25 @@ class BrailleBox extends Component {
       this.state.braille.substring(index + 1)
     this.setState({ braille: newBraille }, () => {
       if (this.props.braille === this.state.braille)
-        this.setState({ correct: true })
-      else this.setState({ correct: false })
+        this.props.setCorrectsState(this.props.index, true)
+      else this.props.setCorrectsState(this.props.index, false)
     })
   }
 
   render() {
     return (
       <div>
-        <Character
-          correct={this.state.correct}
-          colorIndex={this.props.colorIndex}
-        >
+        <Character correct={this.props.correct} index={this.props.index}>
           {this.props.ch}
         </Character>
-        <Box correct={this.state.correct} colorIndex={this.props.colorIndex}>
+        <Box correct={this.props.correct} index={this.props.index}>
           {this.state.braille.split('').map((code, index) => (
             <Button
               key={index}
               value={code}
-              correct={this.state.correct}
-              colorIndex={this.props.colorIndex}
+              correct={this.props.correct}
+              index={this.props.index}
+              setCorrectsState={this.props.setCorrectsState}
               onClick={e => this.toggleBraille(index)}
             />
           ))}

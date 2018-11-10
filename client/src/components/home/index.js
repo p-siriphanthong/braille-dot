@@ -7,6 +7,7 @@ import LoadingDots from '../loading'
 import BrailleBox from './braille-box'
 
 const Wrapper = styled.div`
+  text-align: center;
   margin-top: 100px;
 
   @media (max-width: 768px) {
@@ -15,12 +16,21 @@ const Wrapper = styled.div`
 `
 
 const Question = styled.h1`
-  text-align: center;
   margin-bottom: 30px;
 
   @media (max-width: 768px) {
+    margin-top: 80px;
     font-size: 1.5em;
   }
+`
+
+const Excellent = styled.p`
+  color: ${props => props.theme.primary};
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  ${props => props.show && `opacity: 1.0`}
+  ${props =>
+    !props.show && `opacity: 0.0`}
 `
 
 const Word = styled.span`
@@ -46,6 +56,11 @@ const RefreshButton = styled(Refresh).attrs({
   &:hover {
     color: ${props => props.theme.primary};
   }
+
+  @media (max-width: 768px) {
+    top: 10px;
+    right: 10px;
+  }
 `
 
 class Home extends Component {
@@ -55,7 +70,9 @@ class Home extends Component {
       render: false,
       loading: true,
       word: '',
-      brailles: []
+      brailles: [],
+      corrects: [],
+      count: 0
     }
   }
 
@@ -69,7 +86,9 @@ class Home extends Component {
           render: true,
           loading: false,
           word,
-          brailles
+          brailles,
+          corrects: Array(brailles.length).fill(false),
+          count: this.state.count + 1
         })
         console.log(word, brailles)
       })
@@ -82,6 +101,12 @@ class Home extends Component {
     this.getBrailleWord()
   }
 
+  setCorrectsState = (index, value) => {
+    const corrects = this.state.corrects
+    corrects[index] = value
+    this.setState({ corrects })
+  }
+
   render() {
     if (!this.state.render) return <LoadingDots />
     else {
@@ -92,13 +117,20 @@ class Home extends Component {
             <Question>
               What is Braille of <Word>'{this.state.word}'</Word> ?
             </Question>
+            <Excellent
+              show={this.state.corrects.every(correct => correct === true)}
+            >
+              Excellent!
+            </Excellent>
             <BrailleBoxes>
               {this.state.brailles.map((braille, index) => (
                 <BrailleBox
-                  key={index}
+                  key={String(this.state.count) + '-' + String(index)}
                   ch={this.state.word.split('')[index]}
                   braille={braille}
-                  colorIndex={index}
+                  index={index}
+                  correct={this.state.corrects[index]}
+                  setCorrectsState={this.setCorrectsState}
                 />
               ))}
             </BrailleBoxes>
