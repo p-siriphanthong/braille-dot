@@ -62,7 +62,9 @@ This API to list all Braille alphabet and numbers.
 
 ### /api/braille/word/random
 
-This API to random a word in length 1 to 5 and get its Braille.
+This API to random a word in length 1 to 5 and get its Braille.<br>
+
+For example:
 
 ```javascript
 {
