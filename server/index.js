@@ -4,7 +4,6 @@ const cors = require('cors')
 const request = require('request')
 const randomWords = require('random-words')
 const path = require('path')
-const favicon = require('express-favicon')
 
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -86,9 +85,10 @@ app.get('/api/braille/word/random', (req, res) => {
 })
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(favicon(__dirname + '/../client/build/favicon.ico'))
+  // Serve any static files
   app.use(express.static(path.join(__dirname, '../client/build')))
 
+  // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
   })
