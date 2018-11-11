@@ -45,9 +45,6 @@ const Button = styled.div.attrs({
     `background: ${props.colors.click};`}
   border-radius: 50%;
   margin: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transition: all 0.2s linear;
   cursor: pointer;
 

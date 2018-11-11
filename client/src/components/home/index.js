@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
-import { Refresh } from 'styled-icons/material'
+import { Refresh, Help } from 'styled-icons/material'
 
-import LoadingDots from '../loading'
 import BrailleBox from './braille-box'
+import LoadingDots from '../loading'
+import Helper from './helper'
 
 const Wrapper = styled.div`
   text-align: center;
@@ -50,6 +51,26 @@ const RefreshButton = styled(Refresh).attrs({
   color: white;
   position: absolute;
   top: 50px;
+  right: 100px;
+  cursor: pointer;
+
+  &:hover {
+    color: ${props => props.theme.primary};
+  }
+
+  @media (max-width: 768px) {
+    top: 10px;
+    right: 50px;
+  }
+`
+
+const HelpButton = styled(Help).attrs({
+  size: 30,
+  title: 'Help'
+})`
+  color: white;
+  position: absolute;
+  top: 50px;
   right: 50px;
   cursor: pointer;
 
@@ -69,11 +90,25 @@ class Home extends Component {
     this.state = {
       render: false,
       loading: true,
+      help: false,
       word: '',
       brailles: [],
       corrects: [],
-      count: 0
+      count: 0,
+      braille_list: []
     }
+  }
+
+  componentDidMount() {
+    this.setState({ loading: true })
+    axios
+      .get('/api/braille/list')
+      .then(res => {
+        this.setState({ braille_list: res.data }, this.getBrailleWord())
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   getBrailleWord = () => {
@@ -90,15 +125,10 @@ class Home extends Component {
           corrects: Array(brailles.length).fill(false),
           count: this.state.count + 1
         })
-        console.log(word, brailles)
       })
       .catch(error => {
         console.log(error)
       })
-  }
-
-  componentDidMount() {
-    this.getBrailleWord()
   }
 
   setCorrectsState = (index, value) => {
@@ -107,12 +137,24 @@ class Home extends Component {
     this.setState({ corrects })
   }
 
+  setHelpState = bool => {
+    this.setState({ help: bool })
+  }
+
   render() {
     if (!this.state.render) return <LoadingDots />
     else {
       return (
         <React.Fragment>
           {this.state.loading ? <LoadingDots /> : ''}
+          {this.state.help ? (
+            <Helper
+              braille_list={this.state.braille_list}
+              setHelpState={this.setHelpState}
+            />
+          ) : (
+            ''
+          )}
           <Wrapper>
             <Question>
               What is Braille of <Word>'{this.state.word}'</Word> ?
@@ -135,6 +177,7 @@ class Home extends Component {
               ))}
             </BrailleBoxes>
             <RefreshButton onClick={e => this.getBrailleWord()} />
+            <HelpButton onClick={e => this.setHelpState(true)} />
           </Wrapper>
         </React.Fragment>
       )
