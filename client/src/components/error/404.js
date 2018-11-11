@@ -7,7 +7,7 @@ const col = 27
 const size = 10
 const sizeresponsive = 3
 const gap = 10
-const hightlight = [
+const highlight = [
   '04',
   '14',
   '24',
@@ -158,7 +158,7 @@ class NotFoundPage extends Component {
           >
             {Array.apply(0, Array(row)).map((_, i) =>
               Array.apply(0, Array(col)).map((_, j) =>
-                hightlight.includes(String(i) + String(j)) ? (
+                highlight.includes(String(i) + String(j)) ? (
                   <Dot key={String(i) + String(j)} fill={'true'} />
                 ) : (
                   <Dot key={String(i) + String(j)} />
