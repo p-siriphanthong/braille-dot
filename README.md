@@ -1,6 +1,8 @@
 # Braille Dot
 
-This project uses English Braille data from [zeroclickinfo-goodies](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/share/goodie/cheat_sheets/json/english-braille.json).
+This project uses English Braille data from [zeroclickinfo-goodies](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/share/goodie/cheat_sheets/json/english-braille.json).<br>
+
+Try it online at https://brailledot.herokuapp.com/
 
 ## Available Scripts
 
