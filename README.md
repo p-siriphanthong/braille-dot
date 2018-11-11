@@ -20,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the client side in t
 
 ### `npm run server`
 
-Runs only client side in developer mode.<br>
+Runs only server side in developer mode.<br>
 Open [http://localhost:5000](http://localhost:5000) to view the server side in the browser.
 
 ## Braille Dot API
