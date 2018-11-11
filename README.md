@@ -27,7 +27,7 @@ Open [http://localhost:5000](http://localhost:5000) to view the server side in t
 
 ### /api/braille/list
 
-This API to list all braille.
+This API to list all Braille alphabet and numbers.
 
 ```javascript
 [
@@ -47,13 +47,22 @@ This API to list all braille.
   { 
     character: "z",
     braille: "101011"   // ⠵
+  },
+  { 
+    character: "0",
+    braille: "010110"   // ⠚
+  },
+  ...,
+  { 
+    character: "9",
+    braille: "010100"   // ⠊
   }
 ]
 ```
 
 ### /api/braille/word/random
 
-This API to random a word in length 1-5 and get its braille.
+This API to random a word in length 1 to 5 and get its Braille.
 
 ```javascript
 {
