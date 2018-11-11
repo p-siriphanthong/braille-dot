@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Close } from 'styled-icons/material'
 import HelperBox from './helper-box'
+
+const FadeIn = keyframes`
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+
+  to {
+    top: 0;
+    opacity: 1;
+  }
+`
 
 const Wrapper = styled.div`
   background: rgba(0, 0, 0, 0.3);
@@ -24,6 +36,8 @@ const Modal = styled.div`
   max-width: 768px;
   padding: 50px;
   box-shadow: 0 0 20px black;
+  position: relative;
+  animation: ${FadeIn} 0.3s ease-in-out;
 `
 
 const BrailleList = styled.div`
