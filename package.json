@@ -4,7 +4,11 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "cd server && npm run dev",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "node server",
+    "heroku-postbuild-server": "cd server && npm install && npm install --only=dev --no-shrinkwrap",
+    "heroku-postbuild-client": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "npm run heroku-postbuild-server && npm run heroku-postbuild-client"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"
