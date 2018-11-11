@@ -1,6 +1,6 @@
 # Braille Dot
 
-This project use data from bootstrapped with [zeroclickinfo-goodies](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/share/goodie/cheat_sheets/json/english-braille.json).
+This project use data from [zeroclickinfo-goodies](https://github.com/duckduckgo/zeroclickinfo-goodies/blob/master/share/goodie/cheat_sheets/json/english-braille.json).
 
 ## Available Scripts
 
