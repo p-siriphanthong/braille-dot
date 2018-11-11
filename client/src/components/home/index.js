@@ -142,6 +142,11 @@ class Home extends Component {
   }
 
   render() {
+    let incorrectWords = this.state.word.split('').reduce((arr, ch, index) => {
+      if (this.state.corrects[index] === false) arr.push(ch)
+      return arr
+    }, [])
+
     if (!this.state.render) return <LoadingDots />
     else {
       return (
@@ -151,6 +156,7 @@ class Home extends Component {
             <Helper
               braille_list={this.state.braille_list}
               setHelpState={this.setHelpState}
+              incorrectWords={incorrectWords}
             />
           ) : (
             ''

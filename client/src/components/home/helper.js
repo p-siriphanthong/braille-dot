@@ -90,6 +90,9 @@ class Helper extends Component {
                 key={index}
                 ch={braille.character}
                 braille={braille.braille}
+                highlight={this.props.incorrectWords.includes(
+                  braille.character
+                )}
               />
             ))}
           </BrailleList>
