@@ -71,7 +71,7 @@ For example:
 ```javascript
 {
   word: "home",
-  brailes: [
+  brailles: [
     "110010",   // h: ⠓
     "101010",   // o: ⠕	
     "101100",   // m: ⠍
